@@ -12,42 +12,19 @@ To build a high-performing machine learning model that estimates the **SalePrice
 
 ## 🗽 MLOps Pipeline Overview
 
-![MLOps Pipeline](https://drive.google.com/uc?id=1iVbNgVRR0bsUEndXr5ECppGUUl93vqBL)
-
-This project follows an end-to-end pipeline with the following stages:
-
-1. **ETL (Extract, Transform, Load)**
-
-   * Load and inspect raw data
-   * Handle missing values and data inconsistencies
-   * Perform initial data quality checks
-
-2. **Data Preparation**
-
-   * Feature engineering and encoding
-   * Train-test split and data scaling
-   * Data validation for consistency
-
-3. **Model Training & Validation**
-
-   * Train a **XGBoost Regressor** on clean data
-   * Tune and validate using evaluation metrics
-
-4. **Experiment Tracking**
-
-   * Track all metrics and configurations using **Weights & Biases (wandb)**
-
-5. **Deployment with FastAPI**
-
-   * Serve predictions via a REST API
-   * Document and test endpoints using Swagger UI
-
-6. **CI/CD with GitHub Actions**
-
-   * Automated testing and checks for every pull request
-   * Seamless integration for production readiness
+![MLOps Pipeline](https://i.imgur.com/YasAOB0.png)
 
 ---
+
+This pipeline includes the following stages:
+
+1. **Input data** - Load the raw dataset from Kaggle.
+2. **EDA** - Explore the dataset to understand structure, patterns, and correlations.
+3. **Features selection** - Select important features based on EDA insights.
+4. **Preprocess** - Handle missing values, encode categorical features, and scale numerical values.
+5. **Train and evaluate the performance of multiple model** - Train various models including XGBoost Regressor and evaluate using R², MAE, RMSE.
+6. **FastAPI** - Develop an API endpoint for serving the model.
+7. **Weights & Biases** - Track experiments, visualize training metrics, and manage model versions.
 
 ---
 
