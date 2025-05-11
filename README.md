@@ -1,171 +1,201 @@
-# 🏡 House Price Prediction - MLOps Project
+# 🏡 House Price Prediction – End-to-End MLOps Project
 
-This project is a **House Price Prediction** task using **XGBoost**. The goal is to predict house prices based on various features. The project demonstrates an **end-to-end MLOps pipeline** including data preparation, model training, evaluation, and experiment tracking.
+This project focuses on predicting house prices using the powerful **XGBoost Regressor** algorithm. It follows a complete **MLOps pipeline**—from data ingestion to model deployment—ensuring reproducibility, scalability, and deployment readiness.
 
-## 📊 Project Overview
+---
 
-The goal of this project is to build a predictive model that estimates **SalePrice** of houses based on 79 features including square footage, neighborhood, garage capacity, etc. We use **XGBoost Regressor**, a powerful gradient boosting machine learning algorithm, for model training and evaluation.
+## 🎯 Objective
 
-### Key Steps:
-1. **Data Acquisition** - Fetch the raw dataset from Kaggle.
-2. **Exploratory Data Analysis (EDA)** - Analyze and visualize key patterns in the data.
-3. **Preprocessing** - Handle missing values, encode categorical features, and scale numerical data.
-4. **Model Training** - Train the model using **XGBoost Regressor**.
-5. **Evaluation & Experiment Tracking** - Log metrics and evaluate the model's performance using R², MAE, RMSE.
-6. **Future Work** - Identify areas for model improvement and deployment.
+To build a high-performing machine learning model that estimates the **SalePrice** of residential properties based on features like square footage, quality, neighborhood, garage size, and more.
 
-## 🛠️ Technologies & Tools Used
+---
 
-- **Python** (3.x)
-- **XGBoost**: Gradient Boosting Machine for regression tasks
-- **pandas** & **numpy**: Data manipulation and numerical operations
-- **matplotlib** & **seaborn**: Data visualization
-- **scikit-learn**: For preprocessing, splitting data, and model evaluation
-- **wandb**: Weights and Biases for experiment tracking and model logging
-- **Jupyter Notebooks**: Interactive coding environment for exploration and experimentation
+## 🗽 MLOps Pipeline Overview
 
-## 📂 Folder Structure
+![MLOps Pipeline](https://drive.google.com/uc?id=1iVbNgVRR0bsUEndXr5ECppGUUl93vqBL)
 
-```
+This project follows an end-to-end pipeline with the following stages:
 
-Mlop-prj/
-│
-├── 1\_fetch\_data.ipynb               # Load and prepare the raw dataset
-├── 2\_eda.ipynb                      # Exploratory Data Analysis (EDA)
-├── 3\_preprocessing.ipynb           # Data cleaning, encoding, and scaling
-├── 4\_train\_test.ipynb              # Training and evaluating the model
-│
-├── house-prices-advanced-regression-techniques.zip # Dataset file
-├── requirements.txt                # List of dependencies
-│
-├── artifacts/                      # Model artifacts and outputs
-└── wandb/                          # Weights and Biases logs
+1. **ETL (Extract, Transform, Load)**
 
-````
+   * Load and inspect raw data
+   * Handle missing values and data inconsistencies
+   * Perform initial data quality checks
+
+2. **Data Preparation**
+
+   * Feature engineering and encoding
+   * Train-test split and data scaling
+   * Data validation for consistency
+
+3. **Model Training & Validation**
+
+   * Train a **XGBoost Regressor** on clean data
+   * Tune and validate using evaluation metrics
+
+4. **Experiment Tracking**
+
+   * Track all metrics and configurations using **Weights & Biases (wandb)**
+
+5. **Deployment with FastAPI**
+
+   * Serve predictions via a REST API
+   * Document and test endpoints using Swagger UI
+
+6. **CI/CD with GitHub Actions**
+
+   * Automated testing and checks for every pull request
+   * Seamless integration for production readiness
+
+---
+
+---
 
 ## 📈 Dataset Overview
 
-The dataset used in this project is the **"House Prices: Advanced Regression Techniques"** dataset from [Kaggle](https://www.kaggle.com/c/house-prices-advanced-regression-techniques). It consists of 79 features and the target variable is **SalePrice**, the final price of the house.
+The dataset comes from [Kaggle’s House Prices Competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques). It includes **79 features** describing houses and the **SalePrice** target.
 
-Key features:
-- **GrLivArea**: Above grade (ground) living area in square feet
-- **GarageCars**: Size of garage in car capacity
-- **YearBuilt**: Year the house was built
-- **OverallQual**: General quality of the house
-- **Neighborhood**: Location where the house is situated
+**Sample Features**:
 
-## ⚙️ Installation & Setup
+* `GrLivArea`: Above-ground living area (sqft)
+* `GarageCars`: Garage size (in cars)
+* `YearBuilt`: Year built
+* `OverallQual`: Overall material/finish quality
+* `Neighborhood`: House location group
 
-### Prerequisites:
-- Python 3.x
-- Virtual environment (recommended)
+---
 
-### Steps to Install:
-1. Clone the repository:
+## 🧰 Technologies Used
 
-```bash
-git clone https://github.com/I-KUN-I/Mlop-prj.git
-cd Mlop-prj
-````
+| Tool/Library        | Purpose                       |
+| ------------------- | ----------------------------- |
+| Python 3.x          | Programming language          |
+| XGBoost             | Main regression model         |
+| pandas, numpy       | Data processing               |
+| matplotlib, seaborn | Visualization                 |
+| scikit-learn        | Preprocessing & evaluation    |
+| wandb               | Experiment tracking           |
+| FastAPI             | Model deployment via REST API |
+| GitHub Actions      | CI/CD automation              |
+| Jupyter Notebook    | Exploratory development       |
 
-2. Install the required dependencies:
+---
 
-```bash
-pip install -r requirements.txt
+## 📂 Project Structure
+
+```
+Mlop-prj/
+│
+├── 1_fetch_data.ipynb          # Load raw dataset
+├── 2_eda.ipynb                 # Exploratory data analysis
+├── 3_preprocessing.ipynb       # Feature engineering & cleaning
+├── 4_train_test.ipynb          # Model training & validation
+│
+├── app/
+│   └── main.py                 # FastAPI deployment script
+│
+├── .github/workflows/ci.yml    # GitHub Actions CI workflow
+├── house-prices-advanced-regression-techniques.zip
+├── requirements.txt
+│
+├── artifacts/                  # Trained model & outputs
+└── wandb/                      # Weights & Biases logs
 ```
 
-3. Launch Jupyter notebook:
+---
+## 🧠 Model: XGBoost Regressor
 
-```bash
-jupyter notebook
-```
+We use **XGBoost**, a gradient boosting framework optimized for speed and performance. It is widely used in regression problems involving structured/tabular data.
 
-## 🔍 Workflow
+### 🔍 Why XGBoost?
 
-### Step 1: **Data Acquisition**
+* 🚀 **Fast training** with parallel processing
+* 🧠 **Boosting-based learning**: sequential correction of residuals
+* ✅ **Handles missing values** internally
+* 📉 **Regularization (L1 & L2)** to avoid overfitting
+* 📊 **Feature importance visualization** for interpretability
+* ⏹️ **Early stopping** to prevent unnecessary training
 
-* Download and unzip the dataset from Kaggle.
+### 📊 Performance Metrics Used:
 
-### Step 2: **Exploratory Data Analysis (EDA)**
+| Metric                             | Description                                                                       |
+| ---------------------------------- | --------------------------------------------------------------------------------- |
+| **R² Score**                       | Measures how well the model explains price variance (1 = perfect fit)             |
+| **MAE (Mean Absolute Error)**      | Average absolute difference between predicted and actual prices                   |
+| **RMSE (Root Mean Squared Error)** | Penalizes larger errors more heavily for better realism in high-price predictions |
 
-* Investigate the dataset, visualize the distribution of target variable `SalePrice`, and check for any patterns or outliers.
+These metrics are automatically logged in **Weights & Biases (wandb)**, allowing you to:
 
-### Step 3: **Preprocessing**
+* Monitor training in real-time
+* Compare runs with different hyperparameters
+* Visualize performance trends across experiments
 
-* Handle missing data, encode categorical features, and scale numerical data.
+---
 
-### Step 4: **Model Training with XGBoost**
+## 🔍 Experiment Tracking with Weights & Biases
 
-* Train a **XGBoost Regressor** model to predict house prices.
+This project integrates with **Weights & Biases (wandb)** to log:
 
-### Step 5: **Model Evaluation**
+* Training/validation metrics
+* Hyperparameters
+* Model artifacts
+* Training history and comparison charts
 
-* Evaluate the model using metrics like **R² Score**, **Mean Absolute Error (MAE)**, and **Root Mean Squared Error (RMSE)**.
-* Visualize the results and compare predicted vs. actual values.
-
-## 🧠 Model Used
-
-### **XGBoost Regressor**
-
-XGBoost is an advanced gradient boosting algorithm known for its performance and speed. It builds an ensemble of decision trees and uses boosting to improve accuracy by learning from previous trees' errors.
-
-Key features of XGBoost:
-
-* **Boosting**: Sequentially builds models to correct the errors of the previous one.
-* **Regularization**: Helps prevent overfitting through L1 and L2 regularization.
-* **Handling Missing Data**: XGBoost can handle missing values efficiently.
-* **Feature Importance**: Provides insights into which features contribute most to the model's predictions.
-
-## 📈 Experiment Tracking with W\&B
-
-This project uses **Weights & Biases (W\&B)** to track experiments and monitor model training. W\&B logs the metrics such as **R²**, **MAE**, and **RMSE** for each run, as well as other parameters like **learning rate** and **number of trees**.
-
-* **Install W\&B**:
+### Setup
 
 ```bash
 pip install wandb
-```
-
-* **Login to W\&B**:
-
-```bash
 wandb login
 ```
 
-* **Track the experiment**:
+---
 
-```python
-import wandb
-wandb.init(project="house-price-prediction")
+## 🚀 Model Deployment (FastAPI)
 
-# Log metrics
-wandb.log({"r2_score": r2_score})
-```
+The trained XGBoost model is deployed using **FastAPI**, exposing a REST API for predictions.
 
-## 🏆 Model Evaluation
+### Key Features:
 
-After training the model, we evaluate it using the following metrics:
+* ✅ Lightweight and fast
+* 📦 Accepts JSON input and returns predicted price
+* 🧪 Comes with interactive Swagger UI
+* 📁 Ready for containerization (e.g., Docker)
 
-* **R² Score**: Measures the proportion of the variance in the target variable that is predictable from the features.
-* **Mean Absolute Error (MAE)**: The average of the absolute differences between predicted and actual values.
-* **Root Mean Squared Error (RMSE)**: Measures the magnitude of the prediction error, with greater penalties for larger errors.
+---
 
-## 🚀 Future Enhancements
+## 📌 CI/CD with GitHub Actions
 
-* **Hyperparameter Optimization**: Use GridSearchCV or RandomizedSearchCV for hyperparameter tuning.
-* **Cross-validation**: Implement k-fold cross-validation to reduce overfitting and improve model performance.
-* **Model Deployment**: Deploy the trained model using **Flask** or another web framework for real-time predictions.
-* **Model Interpretability**: Use SHAP or LIME for model interpretation and better understanding of feature importance.
+This project includes a GitHub Actions workflow for continuous integration. It automatically:
+
+* Runs linting and tests on every push or pull request
+* Ensures dependencies are installed and environment is consistent
+* Enables easy scaling and deployment automation
+
+---
+
+## 📌 Future Improvements
+
+* 🔧 Docker container for deployment
+* 🧠 Model explanation (SHAP, LIME)
+* 📆 Integration with cloud storage and ML model registry
+
+---
 
 ## 🤝 Contributing
 
-Feel free to fork the repository and contribute by:
+Contributions are welcome!
 
-* Improving model accuracy
-* Refactoring code
-* Updating documentation
-* Fixing bugs
+You can:
+
+* Improve model performance
+* Refactor code
+* Write tests
+* Add deployment enhancements
+* Improve documentation
+
+---
 
 ## ⭐ Support the Project
 
-If you found this project useful, please give it a ⭐ on GitHub! It helps the project reach a wider audience.
+If you find this project useful, give it a ⭐ on GitHub!
+It helps the project grow and reach more developers.
